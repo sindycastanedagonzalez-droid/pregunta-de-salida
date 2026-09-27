@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Una pregunta ❤️</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow: hidden;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    background: white;
+    padding: 40px 25px;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
+
+.corazon {
+    font-size: 80px;
+    animation: latido 1.2s infinite;
+}
+
+h1 {
+    color: #e91e63;
+    font-size: 38px;
+}
+
+p {
+    color: #777;
+    font-size: 18px;
+}
+
+.zona-botones {
+    height: 220px;
+    position: relative;
+    margin-top: 25px;
+}
+
+button {
+    border: none;
+    border-radius: 50px;
+    padding: 16px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#si {
+    background: #ff2d75;
+    color: white;
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#no {
+    background: #eeeeee;
+    color: #333;
+    position: absolute;
+    left: 55%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#mensaje {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e91e63;
+    min-height: 30px;
+}
+
+@keyframes latido {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="corazon">❤️</div>
+
+    <h1>¿Quieres salir conmigo?</h1>
+
+    <p>Hay una pregunta que quiero hacerte... 👀</p>
+
+    <div class="zona-botones" id="zona">
+
+        <button id="si">
+            SÍ ❤️
+        </button>
+
+        <button id="no">
+            NO 😈
+        </button>
+
+    </div>
+
+    <div id="mensaje"></div>
+
+</div>
+
+<script>
+
+const botonNo = document.getElementById("no");
+const botonSi = document.getElementById("si");
+const zona = document.getElementById("zona");
+const mensaje = document.getElementById("mensaje");
+
+
+function escapar() {
+
+    const ancho = zona.clientWidth;
+    const alto = zona.clientHeight;
+
+    const anchoBoton = botonNo.offsetWidth;
+    const altoBoton = botonNo.offsetHeight;
+
+    const nuevaX =
+        Math.random() * (ancho - anchoBoton);
+
+    const nuevaY =
+        Math.random() * (alto - altoBoton);
+
+    botonNo.style.left = nuevaX + "px";
+    botonNo.style.top = nuevaY + "px";
+
+    botonNo.style.transform = "none";
+
+    mensaje.textContent = "¡me pareces interesante! 😈";
+
+}
+
+
+botonNo.addEventListener("mouseenter", escapar);
+
+botonNo.addEventListener("touchstart", function(event) {
+
+    event.preventDefault();
+
+    escapar();
+
+});
+
+
+botonSi.addEventListener("click", function() {
+
+    mensaje.textContent =
+        "💖 ¡SÍÍÍ! Sabía que dirías que sí 😍";
+
+    botonNo.style.display = "none";
+
+});
+
+</script>
+
+</body>
+</html>
